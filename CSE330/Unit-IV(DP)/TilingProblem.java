@@ -32,8 +32,31 @@ Constraints:
 1 <= n <= 105
 */
 public class TilingProblem {
+    // Approach 1: memonization
+    // T.C: O(n)
+    // S.C: O(n)+O(n)
+    static int mod = (int)1e7;
+    public static int solve(int n,int dp[]){
+        if(n <= 2){
+            return n;
+        }
+        if(dp[n] != -1){
+            return dp[n];
+        }
+        return dp[n] = (solve(n-1,dp)+solve(n-2,dp))%mod;
+    }
     public static int numberOfWays(int n){
-        int mod = (int)1e7;
+        int dp[] = new int[n+1];
+        for(int i = 0;i<=n;i++){
+            dp[i] = -1;
+        }
+        return solve(n,dp);
+    }
+
+    // Approach 2: Tabulation
+    // T.C: O(n)
+    // S.C: O(n)
+    public static int numberOfWaysI(int n){
         if(n <= 2){
             return n;
         }
@@ -48,5 +71,6 @@ public class TilingProblem {
     public static void main(String[] args) {
         int n = 4;
         System.out.println(numberOfWays(n));
+        System.out.println(numberOfWaysI(n));
     }
 }
