@@ -10,9 +10,7 @@ public class SegmentedSieve{
 		int isPrime[] = new int[limit+1];
 		List<Integer> primes = new ArrayList<>();
 
-		for(int i = 2;i<=limit;i++){
-			isPrime[i] = 1;
-		}
+		Arrays.fill(isPrime,1);
 		// sieve of eratosthenese
 		for(int i = 2;i*i <= limit;i++){
 			if(isPrime[i] == 1){
@@ -42,17 +40,14 @@ public class SegmentedSieve{
 		Arrays.fill(dummyArray,1);
 
 		// edge case: when L = 1 mark it  0
-		if (L == 1) {
-            dummyArray[0] = 0;
+		if(L == 1){
+			dummyArray[0] = 0;
         }
-		// // step 3: mark all multiple of primes in (L-R) in dummy array
+		// step 3: mark all multiple of primes in (L-R) in dummy array
 		
 		for(int i : primes){
-			int firstMultiple = (L/i)*i;
-			if(firstMultiple < L){
-				firstMultiple += i; 
-			}
-			for(int j = Math.max(firstMultiple,i*i);j<=R;j += i){
+			int first = Math.max(i*i,(L+i-1)/i*i);
+			for(int j = first;j<=R;j += i){
 				dummyArray[j-L] = 0;
 			}
 		}
@@ -67,7 +62,7 @@ public class SegmentedSieve{
 	}
 	public static void main(String[] args) {
 		int L = 1;
-		int R = 10;
+		int R = 20;
 		List<Integer> ans = segmentedSieve(L, R);
 		System.out.println("Primes in range [" + L + ", " + R + "]: " + ans);
 
