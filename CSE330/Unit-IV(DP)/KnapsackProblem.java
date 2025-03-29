@@ -45,10 +45,6 @@ public class KnapsackProblem {
         return dp[index][capacity];
     }
 
-    // Approach 2: Tabulation
-    // T.C: O(n*capacity)
-    // S.C: O(n*capacity)
-
     public static int solveUsingMemo(int capacity, int val[], int wt[]) {
         int n = val.length;
         int dp[][] = new int[n][capacity+1];
@@ -57,6 +53,11 @@ public class KnapsackProblem {
         }
         return solve(n-1,capacity,val,wt,dp);
     }
+
+    // Approach 2: Tabulation
+    // T.C: O(n*capacity)
+    // S.C: O(n*capacity)
+    
     public static int solveUsingTab(int capacity,int val[],int wt[]){
         int n = val.length;
         int dp[][] = new int[n][capacity+1];
