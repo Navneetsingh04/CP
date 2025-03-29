@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SortelementsByFrequency {
+public class SortElementsByFrequency {
     // Approach 1: Using sorting 
     // Time Complexity: O(nlogn)
     // Space Complexity: O(n)
